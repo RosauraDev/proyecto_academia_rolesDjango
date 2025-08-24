@@ -1,0 +1,63 @@
+{% if user.is_authenticated %}
+    {% if group_name == 'estudiantes' %}
+        <header class="p-3 text-bg-dark bg-primary">
+    {% elif group_name == 'profesores' %}
+        <header class="p-3 text-bg-dark bg-success">
+    {% elif group_name == 'preceptores' %}
+        <header class="p-3 text-bg-dark bg-secondary">
+    {% elif group_name == 'administrativos' %}
+        <header class="p-3 text-bg-dark bg-danger">
+    {% else %}
+        <header class="p-3 text-bg-dark bg-primary">
+    {% endif %}
+{% else %}
+    <header class="p-3 text-bg-dark bg-primary">
+{% endif %}
+    <div class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+            <a href="{% url 'home' %}" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+                ACADEMIA
+                <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap">
+                    <use xlink:href="#bootstrap"></use>
+                </svg>
+            </a>
+
+            {% if user.is_authenticated %}
+                {% if group_name == 'estudiantes' %}
+                    <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0 bg-primary">
+                {% elif group_name == 'profesores' %}
+                    <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0 bg-success">
+                {% elif group_name == 'preceptores' %}
+                    <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0 bg-secondary">
+                {% elif group_name == 'administrativos' %}
+                    <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0 bg-danger">
+                {% else %}
+                    <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                {% endif %}
+            {% else %}
+                <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+            {% endif %}
+
+                <li><a href="{% url 'home' %}" class="nav-link px-2 text-secondary">Home</a></li>
+                <li><a href="#" class="nav-link px-2 text-white">Features</a></li>
+                <li><a href="{% url 'pricing' %}" class="nav-link px-2 text-white">Pricing</a></li>
+                <li><a href="#" class="nav-link px-2 text-white">FAQs</a></li>
+                <li><a href="#" class="nav-link px-2 text-white">About</a></li>
+            </ul>
+
+            <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+                <!-- <input type="search" class="form-control form-control-dark text-bg-dark" placeholder="Search..." aria-label="Search"> -->
+            </form>
+
+            <div class="text-end">
+                {% if not user.is_authenticated %}
+                    <button type="button" class="btn btn-outline-light me-2">Login</button>
+                    <button type="button" class="btn btn-warning">Sign-up</button>
+                {% else %}
+                    <span class="text-white me-3">Bienvenido {{ user.username }}</span>
+                    <a href="#" class="btn btn-outline-light">Cerrar sesión</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</header>

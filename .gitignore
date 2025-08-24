@@ -1,0 +1,62 @@
+# ---- Entorno virtual ----
+envacademia/
+env/
+venv/
+*.pyc
+__pycache__/
+*.pyo
+*.pyd
+.Python
+
+# ---- Archivos de configuración locales ----
+*.sqlite3
+db.sqlite3
+*.log
+*.pot
+*.py[cod]
+
+# ---- Archivos de entorno ----
+.env
+*.env
+.env.*
+
+# ---- Migraciones compiladas ----
+*/migrations/*.py
+!*/migrations/__init__.py
+
+# ---- Archivos de sistema ----
+.DS_Store
+Thumbs.db
+
+# ---- IDEs ----
+.vscode/
+.idea/
+*.swp
+
+# ---- Archivos de compilación ----
+*.egg-info/
+.eggs/
+build/
+dist/
+*.egg
+MANIFEST
+
+# ---- Archivos de coverage / testing ----
+htmlcov/
+.coverage
+coverage.xml
+*.cover
+*.py,cover
+.cache
+.pytest_cache/
+nosetests.xml
+
+# ---- Archivos estáticos generados ----
+staticfiles/
+media/
+
+# ---- Node / Angular (por si tienes frontend integrado) ----
+node_modules/
+npm-debug.log
+yarn-error.log
+/.angular/cache/
