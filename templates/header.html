@@ -38,11 +38,15 @@
                 <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
             {% endif %}
 
+
                 <li><a href="{% url 'home' %}" class="nav-link px-2 text-secondary">Home</a></li>
-                <li><a href="#" class="nav-link px-2 text-white">Features</a></li>
-                <li><a href="{% url 'pricing' %}" class="nav-link px-2 text-white">Pricing</a></li>
-                <li><a href="#" class="nav-link px-2 text-white">FAQs</a></li>
-                <li><a href="#" class="nav-link px-2 text-white">About</a></li>
+                <li><a href="#" class="nav-link px-2 text-white">Courses</a></li>
+
+                {% if not user.is_authenticated or group_name == 'estudiantes' %}
+                 <li><a href="{% url 'pricing' %}" class="nav-link px-2 text-white">Pricing</a></li>
+                 <li><a href="#" class="nav-link px-2 text-white">FAQs</a></li>
+                 <li><a href="#" class="nav-link px-2 text-white">About</a></li>
+                {% endif %}
             </ul>
 
             <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
@@ -54,8 +58,11 @@
                     <button type="button" class="btn btn-outline-light me-2">Login</button>
                     <button type="button" class="btn btn-warning">Sign-up</button>
                 {% else %}
-                    <span class="text-white me-3">Bienvenido {{ user.username }}</span>
+                  <li style="list-style-type: none">
+                     <a class="text-white me-3" style="text-decoration: none;"  href="http://">Bienvenido {{ user.username|capfirst}} | {{group_name|capfirst}}</a>
                     <a href="#" class="btn btn-outline-light">Cerrar sesión</a>
+                  </li>
+                   
                 {% endif %}
             </div>
         </div>

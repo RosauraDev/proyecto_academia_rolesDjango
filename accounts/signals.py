@@ -3,6 +3,9 @@ from django.dispatch import receiver
 from django.db.models.signals import post_save
 from .models import Profile
 
+#Se crean los grupos automaticamente despues del migrate del modelo Profile
+#Y al crear un usuario se asigna el grupo de estudiante 
+
 @receiver(post_save, sender=Profile)
 def add_user_to_students_group(sender, instance, created, **kwargs):
     if created:
