@@ -1,3 +1,4 @@
+
 {% if user.is_authenticated %}
     {% if group_name == 'estudiantes' %}
         <header class="p-3 text-bg-dark bg-primary">
@@ -55,13 +56,33 @@
 
             <div class="text-end">
                 {% if not user.is_authenticated %}
-                    <button type="button" class="btn btn-outline-light me-2">Login</button>
-                    <button type="button" class="btn btn-warning">Sign-up</button>
+                    <a class="btn btn-outline-light me-2" href="{%url 'login'%}"> Login </a>
+                    <a class="btn btn-warning" href="{%url 'register'%}"> Sign-up</a>
                 {% else %}
-                  <li style="list-style-type: none">
+                
+                  <div class="d-flex justify-content-end align-items-center">
+                   <span class="text-white me-3">
                      <a class="text-white me-3" style="text-decoration: none;"  href="http://">Bienvenido {{ user.username|capfirst}} | {{group_name|capfirst}}</a>
-                    <a href="#" class="btn btn-outline-light">Cerrar sesión</a>
-                  </li>
+                     </span>
+                     <div class="dropdown">
+                       <a class="btn btn-outline-light" href="#" role="button"
+                          id="userMenu" data-bs-toggle="dropdown" aria-expanded="false">
+                           <i class="bi bi-chevron-down"></i>
+                       </a>
+                       <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userMenu">
+                           <li>
+                               <form method="post" action="{% url 'logout' %}" class="d-inline">
+                                   {% csrf_token %}
+                                   <button type="submit" class="dropdown-item">Cerrar sesión</button>
+                               </form>
+                           </li>
+                       </ul>
+                   </div>
+                  <!--   <form method="post" action="{%url 'logout'%}">
+                      {% csrf_token %}
+                     <button type="submit" class="btn btn-outline-light"> Cerrar sesión </button>
+                      </form>
+                  </div>-->
                    
                 {% endif %}
             </div>

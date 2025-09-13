@@ -1,8 +1,12 @@
 <div class="text-center mt-3">
     {%if request.user.is_authenticated%}
-        <a class="btn btn-lg btn-primary"   href="http://"> Cerrar sesión </a>
+    <form method="post" action="{%url 'logout'%}">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-lg btn-primary"> Cerrar sesión </button>
+    </form>
+       
     {%else%}
-        <a class="btn btn-lg btn-primary"   href="http://"> Iniciar sesión </a>
-        <a class="btn btn-lg btn-warning"   href="http://"> Registrarse </a>
+        <a class="btn btn-lg btn-primary" href="{%url 'login'%}"> Iniciar sesión </a>
+        <a class="btn btn-lg btn-warning" href="{%url 'register'%}"> Registrarse </a>
     {%endif%}
 </div>
